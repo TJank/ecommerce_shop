@@ -9,7 +9,7 @@ import { addToCart, removeFromCart } from '../actions/cartActions'
 function CartScreen(location) {
     const productId = useParams()
     let navigate = useNavigate()
-    const [searchParams, setSearchParams] = useSearchParams();
+    const [searchParams ] = useSearchParams();
     const qty = Number(searchParams.get('qty'))
     
     const dispatch = useDispatch()
@@ -28,7 +28,7 @@ function CartScreen(location) {
     }
 
     const checkOutHandler = () => {
-        navigate(`/login?redirect=shipping`)
+        navigate(`/shipping`)
     }
     return (
         <Row>
