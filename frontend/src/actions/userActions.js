@@ -1,4 +1,5 @@
 import axios from 'axios'
+import { ORDER_LIST_MY_RERSET } from '../constants/orderConstants'
 import { 
     USER_LOGIN_FAIL,
     USER_LOGIN_REQUEST,
@@ -62,6 +63,7 @@ export const logout = () => (dispatch) => {
     localStorage.removeItem('userInfo')
     dispatch({type: USER_LOGOUT})
     dispatch({type: USER_DETAIL_RESET})
+    dispatch({type: ORDER_LIST_MY_RERSET})
 }
 
 
