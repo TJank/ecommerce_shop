@@ -3,10 +3,11 @@ import { useDispatch, useSelector } from 'react-redux'
 import { Navbar, Nav, Container, NavDropdown} from 'react-bootstrap'
 import { LinkContainer } from 'react-router-bootstrap'
 import { logout } from '../actions/userActions'
+import { useNavigate } from 'react-router-dom'
 
 
 function Header() {
-  
+  const navigate = useNavigate()
   const userLogin = useSelector(state => state.userLogin)
   const { userInfo } = userLogin
 
@@ -14,6 +15,7 @@ function Header() {
 
   const logoutHandler = () => {
     dispatch(logout())
+    navigate('/')
   }
  
   return (
@@ -51,6 +53,22 @@ function Header() {
                   <Nav.Link><i className='fas fa-user'></i>Login</Nav.Link>
                 </LinkContainer>
 
+              )}
+
+              {userInfo && userInfo.isAdmin && (
+                <NavDropdown title='Admin' id='adminmenue'>
+                  <LinkContainer to='/admin/userlist'>
+                      <NavDropdown.Item>Users</NavDropdown.Item>
+                  </LinkContainer>
+
+                  <LinkContainer to='/admin/productlist'>
+                      <NavDropdown.Item>Products</NavDropdown.Item>
+                  </LinkContainer>
+
+                  <LinkContainer to='/admin/orders'>
+                      <NavDropdown.Item>Orders</NavDropdown.Item>
+                  </LinkContainer>
+                </NavDropdown>
               )}
               
             </Nav>
